@@ -1,0 +1,62 @@
+﻿@model List<Chef>
+@{
+    int count = 0;
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Chef Table</h4>
+
+            <a asp-action="Create" asp-controller="Chef" class="btn btn-success">Create Chef</a>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                No
+                            </th>
+                            <th>
+                                Image
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Positions
+                            </th>
+                            <th>
+                                Settings
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Chef chef in Model)
+                        {
+                            count++;
+                            <tr>
+                                <td>
+                                    @count
+                                </td>
+                                <td>
+                                    <img src="~/assets/img/@chef.Image"/>
+                                </td>
+                                <td>
+                                    @chef.Name
+                                </td>
+                                <td>
+                                    @chef.Position.Name
+                                </td>
+                                <td>
+                                    <a asp-action="Update" asp-controller="Chef" asp-route-id="@chef.Id" class="btn btn-primary"><i class="mdi mdi-grease-pencil"></i></a>
+                                    <a asp-action="Delete" asp-controller="Chef" asp-route-id="@chef.Id" class="btn btn-danger"><i class="mdi mdi-delete"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
